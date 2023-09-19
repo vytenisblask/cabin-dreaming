@@ -25,7 +25,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  height: 100vh;
+  height: 100%;
 }
 
 #app {
@@ -33,11 +33,21 @@ body, html {
   justify-content: center;
   align-items: center;
   background-color: #FFDAB9;
-  height: 100%;
+  height: 100vh;
 }
 
 .icons-container {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .icons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
 </style>

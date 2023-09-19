@@ -74,12 +74,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3rem;
+    margin: 2rem;
   }
   
+
+  @media (max-width: 768px) {
+    .sound-icon {
+    margin: 0rem;
+  }
+  }
+
   img {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     margin-bottom: 10px;
   }
 
