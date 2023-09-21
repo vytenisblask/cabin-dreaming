@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div class="app-container">
+    <img src="@/assets/np_cabin.svg" alt="Cabin" class="cabin-image">
     <div class="icons-container">
       <SoundIcon :iconPath="require('@/assets/np_fire.svg')" :soundPath="require('@/assets/fire_cracklin.mp3')" altText="Fire Icon" />
       <SoundIcon :iconPath="require('@/assets/np_river.svg')" :soundPath="require('@/assets/river_flow.mp3')" altText="River Icon" />
@@ -26,27 +27,41 @@ body, html {
   padding: 0;
   font-family: 'Arial', sans-serif;
   height: 100%;
+  background-color: #FFDAB9;
 }
 
-#app {
+.app-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: #FFDAB9;
   height: 100vh;
+  padding: 1rem; 
+}
+
+.cabin-image {
+  flex: 0 0 50%; 
+  max-width: 100%;
+  max-height: 400px;
 }
 
 .icons-container {
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0.2rem;
+  flex: 0 0 50%;  
+  align-items: center;
+  padding: 0.1rem; 
 }
+
 
 @media (max-width: 768px) {
   .icons-container {
     flex-direction: column;
     align-items: center;
   }
+  .cabin-image {
+    display: none;
+}
 }
 
 

@@ -74,7 +74,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem;
+    margin: 1rem;
   }
   
 
@@ -91,7 +91,7 @@
   }
 
   .volume-slider {
-  width: 100px;  /* or however wide you want it */
+  width: 100px;
     }
  .noUi-connect {
   background: #77A4A0;
