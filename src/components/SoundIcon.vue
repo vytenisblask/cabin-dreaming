@@ -1,72 +1,77 @@
 <template>
-    <div class="sound-icon">
-      <img :src="iconPath" :alt="altText">
-      <div ref="slider" class="volume-slider"></div>
-      <audio ref="audio" loop>
-        <source :src="soundPath" type="audio/mpeg">
-      </audio>
-    </div>
-  </template>
-  
-  <script>
-  import noUiSlider from 'nouislider';
-  import 'nouislider/dist/nouislider.css';
-  
-  export default {
-    props: {
-      iconPath: {
-        type: String,
-        required: true
-      },
-      soundPath: {
-        type: String,
-        required: true
-      },
-      altText: {
-        type: String,
-        default: 'Sound Icon'
-      }
-    },
-    data() {
-      return {
-        volume: 0,
-      };
-    },
-    mounted() {
-      noUiSlider.create(this.$refs.slider, {
-        start: [0],
-        connect: [true, false],
-        range: {
-          'min': [0],
-          'max': [100]
-        }
-      });
-  
-      this.$refs.slider.noUiSlider.on('update', (values) => {
-        this.volume = parseFloat(values[0]);
-      });
-    },
-    watch: {
-      volume(newVolume) {
-        this.setVolume(newVolume);
-      }
-    },
-    methods: {
-      setVolume(volume) {
-        const audio = this.$refs.audio;
-        audio.volume = volume / 100;
-        
-        if (audio.paused && volume > 0) {
-          audio.play().catch(error => {
-            console.error("Error playing audio:", error);
-          });
-        } else if (volume <= 0 && !audio.paused) {
-          audio.pause();
-        }
-      }
-    }
+  <div class="sound-icon">
+    <img :src="iconPath" :alt="altText">
+    <div ref="slider" class="volume-slider"></div>
+    <audio ref="audio" loop>
+      <source :src="soundPath" type="audio/mpeg">
+    </audio>
+  </div>
+</template>
+
+<script>
+import noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
+
+export default {
+props: {
+  iconPath: {
+    type: String,
+    required: true
+  },
+  soundPath: {
+    type: String,
+    required: true
+  },
+  altText: {
+    type: String,
+    default: 'Sound Icon'
+  }
+},
+data() {
+  return {
+    volume: 0,
   };
-  </script>  
+},
+mounted() {
+  noUiSlider.create(this.$refs.slider, {
+    start: [0],
+    connect: [true, false],
+    range: {
+      'min': [0],
+      'max': [100]
+    }
+  });
+
+  this.$refs.slider.noUiSlider.on('update', (values) => {
+    this.volume = parseFloat(values[0]);
+  });
+},
+watch: {
+  volume(newVolume) {
+    this.setVolume(newVolume);
+  }
+},
+methods: {
+  setVolume(volume) {
+    const audio = this.$refs.audio;
+    audio.volume = volume / 100;
+    
+    if (audio.paused && volume > 0) {
+      audio.play().catch(error => {
+        console.error("Error playing audio:", error);
+      });
+    } else if (volume <= 0 && !audio.paused) {
+      audio.pause();
+    }
+  },
+  stopSound() {
+    this.$refs.audio.pause();
+    this.$refs.audio.currentTime = 0;
+    this.$refs.slider.noUiSlider.set(0);
+  }
+}
+};
+</script>
   
   <style scoped>
   /* Additional styles to improve the look of the slider and layout. */
