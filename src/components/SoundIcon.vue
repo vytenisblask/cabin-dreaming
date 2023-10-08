@@ -60,6 +60,7 @@ methods: {
       audio.play().catch(error => {
         console.error("Error playing audio:", error);
       });
+      this.$emit('user-interaction');
     } else if (volume <= 0 && !audio.paused) {
       audio.pause();
     }
@@ -68,7 +69,15 @@ methods: {
     this.$refs.audio.pause();
     this.$refs.audio.currentTime = 0;
     this.$refs.slider.noUiSlider.set(0);
-  }
+  },
+      attemptVideoPlayback() {
+    const videoElement = this.$refs.backgroundVideo;
+    if (videoElement.paused) {
+      videoElement.play().catch(error => {
+        console.error("Error playing video:", error);
+      });
+    }
+  },
 }
 };
 </script>

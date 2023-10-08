@@ -1,6 +1,10 @@
 <template>
+  <div class="video-container">
+    <video class="background-video" ref="backgroundVideo" playsinline autoplay muted loop>
+      <source src="@/assets/cabin_video_bck.mp4" type="video/mp4">
+      Your browser does not support the HTML5 video tag. Please upgrade your browser.
+    </video>
   <div class="app-container">
-    <img src="@/assets/np_cabin.svg" alt="Cabin" class="cabin-image">
     <div class="icons-container">
       <SoundIcon ref="soundIcon1" :iconPath="require('@/assets/np_fire.svg')" :soundPath="require('@/assets/fire_cracklin.mp3')" altText="Fire Icon" />
       <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.svg')" :soundPath="require('@/assets/river_flow.mp3')" altText="River Icon" />
@@ -10,11 +14,12 @@
     <div class="timer-container">
       <label>
         <input type="checkbox" v-model="timerEnabled" @change="toggleTimer">
-        Stop after: 
+        stop after: 
       </label>
       <input type="number" v-model.number="timerMinutes" min="1" @input="updateTimer" :disabled="!timerEnabled">
       minutes
     </div>
+  </div>
   </div>
 </template>
 
@@ -32,6 +37,7 @@ export default {
       timerEnabled: false,
       timerMinutes: 0,
       timerId: null,
+      playbackSpeed: 0.9,
     };
   },
   methods: {
@@ -67,6 +73,9 @@ export default {
       }
     },
 },
+mounted() {
+    this.$refs.backgroundVideo.playbackRate = this.playbackSpeed;
+  }
 };
 </script>
 
@@ -80,18 +89,31 @@ body, html {
   background-color: #FFDAB9;
 }
 
-.app-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.video-container {
+  position: relative;
+  width: 100vw;
   height: 100vh;
-  padding: 1rem; 
+  overflow: hidden;
 }
 
-.cabin-image {
-  flex: 0 0 50%; 
-  max-width: 100%;
-  max-height: 400px;
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  padding: 1rem; 
+  z-index: 2;
 }
 
 .icons-container {
@@ -101,6 +123,7 @@ body, html {
   flex: 0 0 50%;  
   align-items: center;
   padding: 0.1rem; 
+  z-index: 5;
 }
 
 
@@ -122,6 +145,8 @@ body, html {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  z-index: 4;
+  font-size: 1rem;
 }
 
 input[type="number"] {
