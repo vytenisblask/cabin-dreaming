@@ -102,6 +102,7 @@ methods: {
     width: 130px;
     height: 130px;
     margin-bottom: 10px;
+    opacity: 0.79;
   }
 
   .volume-slider {
