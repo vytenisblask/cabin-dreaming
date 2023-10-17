@@ -124,6 +124,7 @@ body, html {
   align-items: center;
   padding: 0.1rem; 
   z-index: 5;
+  justify-content: center;
 }
 
 
