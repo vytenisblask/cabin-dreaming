@@ -136,6 +136,9 @@ body, html {
   .cabin-image {
     display: none;
 }
+.icons-container {
+  gap: 2rem;
+}
 }
 
 .timer-container {

@@ -91,18 +91,21 @@ methods: {
     margin: 1rem;
   }
   
-
-  @media (max-width: 768px) {
-    .sound-icon {
-    margin: 0rem;
-  }
-  }
-
   img {
     width: 130px;
     height: 130px;
     margin-bottom: 10px;
     opacity: 0.79;
+  }
+
+  @media (max-width: 768px) {
+    .sound-icon {
+    margin: 0rem;
+  }
+  img {
+    width: 80px;
+    height: auto;
+  }
   }
 
   .volume-slider {
