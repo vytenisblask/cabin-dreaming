@@ -139,6 +139,10 @@ body, html {
 .icons-container {
   gap: 2rem;
 }
+.app-container {
+  padding: 0;
+  height: 100%;
+}
 }
 
 .timer-container {
