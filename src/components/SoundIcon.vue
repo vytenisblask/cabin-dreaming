@@ -2,7 +2,7 @@
   <div class="sound-icon">
     <img :src="iconPath" :alt="altText">
     <div ref="slider" class="volume-slider"></div>
-    <audio ref="audio" loop>
+    <audio preload="auto" ref="audio" loop>
       <source :src="soundPath" type="audio/mpeg">
     </audio>
   </div>

@@ -135,14 +135,14 @@ body, html {
   }
   .cabin-image {
     display: none;
-}
-.icons-container {
-  gap: 2rem;
-}
-.app-container {
-  padding: 0;
-  height: 100%;
-}
+  }
+  .icons-container {
+    gap: 2rem;
+  }
+  .app-container {
+    padding: 0;
+    height: 100%;
+  }
 }
 
 .timer-container {
