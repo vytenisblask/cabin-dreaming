@@ -4,33 +4,29 @@
       <source src="@/assets/cabin_video_bck.mp4" type="video/mp4">
       Your browser does not support the HTML5 video tag. Please upgrade your browser.
     </video>
-  <div class="app-container">
-    <div class="icons-container">
-      <SoundIcon ref="soundIcon1" :iconPath="require('@/assets/np_fire.png')" :soundPath="require('@/assets/fire_cracklin_2.mp3')" altText="Fire Icon" />
-      <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.png')" :soundPath="require('@/assets/river_flow_2.mp3')" altText="River Icon" />
-      <SoundIcon ref="soundIcon3" :iconPath="require('@/assets/np_wind.png')" :soundPath="require('@/assets/wind_husl_2.mp3')" altText="Wind Icon" />
-      <SoundIcon ref="soundIcon4" :iconPath="require('@/assets/np_birds.png')" :soundPath="require('@/assets/birds_chrp_2.mp3')" altText="Birds Icon" />
+    <div class="app-container">
+      <div class="icons-container">
+        <SoundIcon ref="soundIcon1" :iconPath="require('@/assets/np_fire.png')" :soundPath="require('@/assets/fire_cracklin_2.mp3')" altText="Fire Icon" />
+        <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.png')" :soundPath="require('@/assets/river_flow_2.mp3')" altText="River Icon" />
+        <SoundIcon ref="soundIcon3" :iconPath="require('@/assets/np_wind.png')" :soundPath="require('@/assets/wind_husl_2.mp3')" altText="Wind Icon" />
+        <SoundIcon ref="soundIcon4" :iconPath="require('@/assets/np_birds.png')" :soundPath="require('@/assets/birds_chrp_2.mp3')" altText="Birds Icon" />
+      </div>
+      <div class="settings-container">
+        <AppSettings v-model:timerEnabled="timerEnabled" v-model:timerMinutes="timerMinutes" />
+      </div>
     </div>
-    <div class="timer-container">
-      <label>
-        <input type="checkbox" v-model="timerEnabled" @change="toggleTimer">
-        stop after: 
-      </label>
-      <input type="number" v-model.number="timerMinutes" min="1" @input="updateTimer" :disabled="!timerEnabled">
-      minutes
-    </div>
-  </div>
   </div>
 </template>
 
-<!-- App.vue -->
 <script>
 import SoundIcon from '@/components/SoundIcon.vue';
+import AppSettings from '@/components/Settings.vue';
 
 export default {
   name: 'App',
   components: {
     SoundIcon,
+    AppSettings,
   },
   data() {
     return {
@@ -72,13 +68,12 @@ export default {
         this.timerId = null;
       }
     },
-},
-mounted() {
+  },
+  mounted() {
     this.$refs.backgroundVideo.playbackRate = this.playbackSpeed;
   }
 };
 </script>
-
 
 <style>
 body, html {
@@ -127,7 +122,6 @@ body, html {
   justify-content: center;
 }
 
-
 @media (max-width: 768px) {
   .icons-container {
     flex-direction: column;
@@ -143,22 +137,6 @@ body, html {
     padding: 0;
     height: 100%;
   }
-}
-
-.timer-container {
-  position: fixed;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  z-index: 4;
-  font-size: 1rem;
-}
-
-input[type="number"] {
-  width: 60px;
 }
 
 </style>
