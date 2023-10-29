@@ -73,16 +73,17 @@ export default {
             this.rotateDegree += 180;
         },
         startCountdown() {
-            if (this.countdownInterval) {
-                clearInterval(this.countdownInterval);
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
+        this.countdownInterval = setInterval(() => {
+            this.remainingTime--;
+            if (this.remainingTime <= 0) {
+                this.stopCountdown();
+                this.$emit('update:timerEnabled', false);
+                this.$emit('timerFinished');
             }
-            this.countdownInterval = setInterval(() => {
-                this.remainingTime--;
-                if (this.remainingTime <= 0) {
-                    this.stopCountdown();
-                    this.$emit('update:timerEnabled', false);
-                }
-            }, 1000);
+        }, 1000);
         },
         stopCountdown() {
             if (this.countdownInterval) {

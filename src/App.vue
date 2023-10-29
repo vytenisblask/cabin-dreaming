@@ -12,7 +12,10 @@
         <SoundIcon ref="soundIcon4" :iconPath="require('@/assets/np_birds.png')" :soundPath="require('@/assets/birds_chrp_2.mp3')" altText="Birds Icon" />
       </div>
       <div class="settings-container">
-        <AppSettings v-model:timerEnabled="timerEnabled" v-model:timerMinutes="timerMinutes" />
+        <AppSettings 
+        v-model:timerEnabled="timerEnabled" 
+        v-model:timerMinutes="timerMinutes"
+        @timerFinished="stopAllSounds" />
       </div>
     </div>
   </div>
