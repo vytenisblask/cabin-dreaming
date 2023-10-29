@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       timerEnabled: false,
-      timerMinutes: 0,
+      timerMinutes: 5,
       timerId: null,
       playbackSpeed: 0.9,
     };

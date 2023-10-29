@@ -1,8 +1,10 @@
 <template>
     <div class="settings-wrapper">
-      <img src="@/assets/np_settings.svg" alt="Settings Icon" :style="{ transform: `rotate(${rotateDegree}deg)` }" @click="toggleMenu" class="settings-icon" />
-      <div v-if="menuVisible" class="settings-menu">
+        
+        <img src="@/assets/np_settings.svg" alt="Settings Icon" :style="{ transform: `rotate(${rotateDegree}deg)` }" @click="toggleMenu" class="settings-icon" />
+        <div v-if="menuVisible" class="settings-menu">
         <div class="timer-container">
+            <div class="clocks-set">
             <div class="custom-checkbox">
                 <input type="checkbox" id="timerCheckbox" :checked="timerEnabled" @change="onTimerEnabledChange" hidden>
                 <label for="timerCheckbox" class="checkbox-label"></label>
@@ -12,6 +14,10 @@
             </label>
             <input type="number" :value="timerMinutes" @input="onTimerMinutesChange" min="1" :disabled="!timerEnabled">
             minutes
+            </div>
+            <div v-if="timerEnabled && remainingTime" class="countdown">
+                {{ Math.floor(remainingTime / 60) }}m {{ remainingTime % 60 }}s left
+            </div>
         </div>
       </div>
     </div>
@@ -19,37 +25,81 @@
   
 <script>
 export default {
-name: 'AppSettings',
-props: {
-    timerEnabled: {
-    type: Boolean,
-    required: true,
+    name: 'AppSettings',
+    props: {
+        timerEnabled: {
+            type: Boolean,
+            required: true
+        },
+        timerMinutes: {
+            type: Number,
+            required: true
+        }
     },
-    timerMinutes: {
-    type: Number,
-    required: true,
+    data() {
+        return {
+            menuVisible: false,
+            rotateDegree: 0,
+            remainingTime: 0,
+            countdownInterval: null
+        };
     },
-},
-data() {
-    return {
-    menuVisible: false,
-    rotateDegree: 0,
-    };
-},
-methods: {
-    onTimerEnabledChange(event) {
-    this.$emit('update:timerEnabled', event.target.checked);
+    watch: {
+        timerEnabled(val) {
+            if (val) {
+                this.startCountdown();
+            } else {
+                this.stopCountdown();
+            }
+        },
+        timerMinutes(val) {
+            if (this.timerEnabled) {
+                this.remainingTime = val * 60;
+            }
+        }
     },
-    onTimerMinutesChange(event) {
-    this.$emit('update:timerMinutes', parseFloat(event.target.value));
+    methods: {
+        onTimerEnabledChange(event) {
+            this.$emit('update:timerEnabled', event.target.checked);
+            if (event.target.checked) {
+                this.remainingTime = this.timerMinutes * 60;
+            }
+        },
+        onTimerMinutesChange(event) {
+            this.$emit('update:timerMinutes', parseFloat(event.target.value));
+        },
+        toggleMenu() {
+            this.menuVisible = !this.menuVisible;
+            this.rotateDegree += 180;
+        },
+        startCountdown() {
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+            }
+            this.countdownInterval = setInterval(() => {
+                this.remainingTime--;
+                if (this.remainingTime <= 0) {
+                    this.stopCountdown();
+                    this.$emit('update:timerEnabled', false);
+                }
+            }, 1000);
+        },
+        stopCountdown() {
+            if (this.countdownInterval) {
+                clearInterval(this.countdownInterval);
+                this.countdownInterval = null;
+                this.remainingTime = 0;
+            }
+        }
     },
-    toggleMenu() {
-    this.menuVisible = !this.menuVisible;
-    this.rotateDegree += 180;
-    },
-},
+    beforeUnmount() {
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
+    }
 };
 </script>
+
   
 
 <style scoped>
@@ -59,6 +109,7 @@ methods: {
     gap: 0.5rem;
     z-index: 4;
     font-size: 1rem;
+    flex-direction: column;
 }
 
 .settings-wrapper {
@@ -125,6 +176,12 @@ input[type="checkbox"]:checked + .checkbox-label:after {
 }
 
 input[type="number"] {
-    width: 60px;
+    width: 50px;
+}
+
+.countdown {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #333;
 }
 </style>
