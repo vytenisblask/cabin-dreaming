@@ -3,8 +3,11 @@
       <img src="@/assets/np_settings.svg" alt="Settings Icon" :style="{ transform: `rotate(${rotateDegree}deg)` }" @click="toggleMenu" class="settings-icon" />
       <div v-if="menuVisible" class="settings-menu">
         <div class="timer-container">
-            <label>
-                <input type="checkbox" :checked="timerEnabled" @change="onTimerEnabledChange">
+            <div class="custom-checkbox">
+                <input type="checkbox" id="timerCheckbox" :checked="timerEnabled" @change="onTimerEnabledChange" hidden>
+                <label for="timerCheckbox" class="checkbox-label"></label>
+            </div>
+            <label for="timerCheckbox">
                 stop after: 
             </label>
             <input type="number" :value="timerMinutes" @input="onTimerMinutesChange" min="1" :disabled="!timerEnabled">
@@ -58,10 +61,6 @@ methods: {
     font-size: 1rem;
 }
 
-input[type="number"] {
-    width: 60px;
-}
-
 .settings-wrapper {
     position: fixed;
     top: 10px;
@@ -86,5 +85,46 @@ input[type="number"] {
 
 .timer-container {
     padding: 1rem;
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.checkbox-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkbox-label:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #4e7766;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+input[type="checkbox"]:checked + .checkbox-label:after {
+    display: block;
+}
+
+input[type="number"] {
+    width: 60px;
 }
 </style>
