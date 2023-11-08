@@ -6,9 +6,9 @@
     </video>
     <div class="app-container">
       <div class="icons-container">
-        <SoundIcon ref="soundIcon1" :iconPath="require('@/assets/np_fire.png')" :soundPath="require('@/assets/fire_cracklin_2.mp3')" altText="Fire Icon" />
-        <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.png')" :soundPath="require('@/assets/river_flow_2.mp3')" altText="River Icon" />
-        <SoundIcon ref="soundIcon3" :iconPath="require('@/assets/np_wind.png')" :soundPath="require('@/assets/wind_husl_2.mp3')" altText="Wind Icon" />
+        <SoundIcon ref="soundIcon1" :iconPath="require('@/assets/np_fire.png')" :soundPath="require('@/assets/fire_cracklin_3.mp3')" altText="Fire Icon" />
+        <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.png')" :soundPath="require('@/assets/river_flow_3.mp3')" altText="River Icon" />
+        <SoundIcon ref="soundIcon3" :iconPath="require('@/assets/np_wind.png')" :soundPath="require('@/assets/wind_husl_3.mp3')" altText="Wind Icon" />
         <SoundIcon ref="soundIcon4" :iconPath="require('@/assets/np_birds.png')" :soundPath="require('@/assets/birds_chrp_2.mp3')" altText="Birds Icon" />
       </div>
       <div class="settings-container">
