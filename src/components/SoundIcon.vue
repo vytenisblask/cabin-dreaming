@@ -92,9 +92,9 @@ methods: {
   }
   
   img {
-    width: 130px;
-    height: 130px;
-    margin-bottom: 10px;
+    width: 125px;
+    height: auto;
+    margin-bottom: 1rem;
     opacity: 0.79;
   }
 
@@ -103,8 +103,9 @@ methods: {
     margin: 0rem;
   }
   img {
-    width: 80px;
+    width: 85px;
     height: auto;
+    margin-bottom: 10px;
   }
   }
 
