@@ -83,7 +83,6 @@ methods: {
 </script>
   
   <style scoped>
-  /* Additional styles to improve the look of the slider and layout. */
   .sound-icon {
     display: flex;
     flex-direction: column;
