@@ -128,8 +128,12 @@ body, html {
 
 @media (max-width: 768px) {
   .icons-container {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .icons-container > * {
+    flex: 0 0 50%;
+    box-sizing: border-box;
   }
   .cabin-image {
     display: none;
