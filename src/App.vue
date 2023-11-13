@@ -10,6 +10,7 @@
         <SoundIcon ref="soundIcon2" :iconPath="require('@/assets/np_river.png')" :soundPath="require('@/assets/river_flow_3.mp3')" altText="River Icon" />
         <SoundIcon ref="soundIcon3" :iconPath="require('@/assets/np_wind.png')" :soundPath="require('@/assets/wind_husl_3.mp3')" altText="Wind Icon" />
         <SoundIcon ref="soundIcon4" :iconPath="require('@/assets/np_birds.png')" :soundPath="require('@/assets/birds_chrp_2.mp3')" altText="Birds Icon" />
+        <SoundIcon ref="soundIcon5" :iconPath="require('@/assets/np_thunder.svg')" :soundPath="require('@/assets/lightning_crack_3.mp3')" altText="Thunder Icon" />
       </div>
       <div class="settings-container">
         <AppSettings 
@@ -83,7 +84,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  height: 100%;
+  height: 100vh;
   background-color: #FFDAB9;
 }
 
@@ -138,7 +139,7 @@ body, html {
   }
   .app-container {
     padding: 0;
-    height: 100%;
+    height: 100vh;
   }
 }
 
