@@ -70,7 +70,7 @@ export default {
         },
         toggleMenu() {
             this.menuVisible = !this.menuVisible;
-            this.rotateDegree += 180;
+            this.rotateDegree += 90;
         },
         startCountdown() {
         if (this.countdownInterval) {
@@ -115,8 +115,8 @@ export default {
 
 .settings-wrapper {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 12x;
+    left: 12px;
     z-index: 1000;
 }
 

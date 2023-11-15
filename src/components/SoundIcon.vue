@@ -91,7 +91,7 @@ methods: {
   }
   
   img {
-    width: 125px;
+    width: 120px;
     height: auto;
     margin-bottom: 1rem;
     opacity: 0.79;
