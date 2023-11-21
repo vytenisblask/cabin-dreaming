@@ -115,7 +115,7 @@ export default {
 
 .settings-wrapper {
     position: fixed;
-    top: 12x;
+    top: 12px;
     left: 12px;
     z-index: 1000;
 }
