@@ -136,7 +136,7 @@ export default {
 }
 
 .timer-container {
-    padding: 1rem;
+    padding: 1.2rem;
 }
 
 .custom-checkbox {
@@ -181,6 +181,7 @@ input[type="number"] {
 }
 
 .countdown {
+    font-family: 'Courier New', Courier, monospace;
     margin-top: 5px;
     font-size: 0.9rem;
     color: #333;
